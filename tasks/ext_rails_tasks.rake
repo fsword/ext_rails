@@ -28,6 +28,16 @@ namespace :ext_rails do
     }  
   end
 
+  namespace :db do
+    desc "db rebuild with seed"
+    task "redo" => :environment do
+      ActiveRecord::Migrator.migrate("db/migrate/", 0)
+      ActiveRecord::Migrator.migrate("db/migrate/", nil)
+      Rake::Task["db:seed"].invoke
+    end
+  end
+
+  private
   def del_model arg
     if arg == "*"
       Dir.entries("app/models").each{ |f| 
