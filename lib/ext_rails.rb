@@ -1,3 +1,5 @@
+require File.dirname(__FILE__) + "/core.rb"
+
 %W[action_view].each do |mod|
   Dir[File.dirname(__FILE__) + "/#{mod}/*.rb"].each{|file|
     RAILS_DEFAULT_LOGGER.info "#{mod} is patched by ext_rails"
